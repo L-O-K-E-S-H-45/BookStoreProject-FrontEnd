@@ -1,0 +1,127 @@
+.nav-bar {
+    background-color: #A03037;
+    border-bottom: solid .5px rgb(119, 119, 119);
+    padding: 0px 100px;
+}
+
+.nav-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-bar-content-s1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar-content-s1 img {
+    height: 30px;
+    width: 30px;
+}
+
+.nav-bar-content-s1 p {
+    color: white;
+    font-weight: 500;
+    letter-spacing: .7px;
+    margin-top: 20px;
+    margin-left: 13px;
+    font-size: 19px;
+}
+
+.nav-bar-content-s2 {
+    width: 550px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f3f4;
+    border-radius: 10px;
+}
+
+.nav-bar-content-s2-input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .8px;
+    background-color: #f1f3f4;
+}
+
+.nav-bar-content-s2-input::placeholder {
+    color: #777;
+    /* Lighter color for placeholder text */
+}
+
+.focused {
+    background-color: white;
+}
+
+.focused-input {
+    background-color: white;
+    color: #000;
+    /* Even darker color for input text when focused */
+}
+
+.nav-bar-content-s2-input {
+    border: none;
+    border-radius: 10px;
+}
+
+.nav-bar-content-s3 {
+    display: flex;
+    height: 100%;
+}
+
+.nav-bar-content-s3 button {
+    width: 80px;
+    border-top: none;
+    border-bottom: none;
+    background: none;
+    padding-top: 13px;
+    cursor: pointer;
+}
+
+.profile-btn {
+    border-left: solid .5px rgb(95, 95, 95);
+    border-right: solid .5px rgb(95, 95, 95);
+}
+
+.cart-btn {
+    border-right: solid .5px rgb(95, 95, 95);
+    border-left: none;
+}
+
+.nav-bar-content-s3 img {
+    height: 17px;
+    width: 17px;
+}
+
+.nav-bar-content-s3 p {
+    font-size: 11px;
+    color: white;
+    letter-spacing: .5px;
+}
+
+//------------
+
+
+// .children {
+//     width: 1120px;
+//     height: 100%;
+//     background-color: aquamarine;
+//     display: flex;
+//     // padding: 40px 115px;
+//     margin: auto;
+//     margin-top: 40px;
+// }

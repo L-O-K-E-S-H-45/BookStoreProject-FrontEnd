@@ -1,0 +1,37 @@
+<mat-card appearance="outlined" class="header">
+    <mat-card-content>
+        <div class="headre-content">
+            <img src="../../../assets/Images/openbook-header.png" alt="open-book">
+            <p>Bookstore</p>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="body">
+    <mat-card class="center-card">
+        <mat-card-content class="mat-card-content">
+            <mat-card class="left-card">
+                <img src="../../../assets/Images/commonpage-cart.png" alt="cart">
+                <h1>ONLINE BOOK SHOPPING</h1>
+            </mat-card>
+            <mat-card class="right-card">
+                <!-- <mat-tab-group class="m-t-g">
+                    <mat-tab label="Login" class="c1"> Login content </mat-tab>
+                    <mat-tab label="Signup"> Signup content</mat-tab>
+                </mat-tab-group> -->
+                <div class="toggle-buttons">
+                    <button (click)="setActive('login')" [class.active]="display === true">Login</button>
+                    <button (click)="setActive('signup')" [class.active]="display === false">Signup</button>
+                </div>
+                <!-- <ng-container *ngIf="display;then login else signup" class="right-card-header"></ng-container> -->
+                <div *ngIf="display;then login else signup" class="right-card-header"></div>
+                <ng-template #login>
+                    <app-login></app-login>
+                </ng-template>
+                <ng-template #signup>
+                    <app-signup></app-signup>
+                </ng-template>
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+</div>

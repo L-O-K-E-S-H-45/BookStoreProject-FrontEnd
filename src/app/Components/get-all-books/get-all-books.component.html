@@ -1,0 +1,34 @@
+<div class="books-outer-conainer">
+
+    <div class="books-container-section-1">
+        <h1>Books <span>({{booksCount}} items)</span> </h1>
+        <select name="" id="" (change)="onSortChange($event)">
+            <option value="relevance">Sort by relevance</option>
+            <option value="priceLowToHigh">Price: Low to High</option>
+            <option value="priceHighToLow">Price: High to Low</option>
+            <option value="newestArrivals">Newest Arrivals</option>
+        </select>
+    </div>
+
+    <div class="books-container-section-2">
+        <mat-card *ngFor="let books of booksList" class="book-container">
+            <mat-card-content class="book-container-image-div">
+                <img [src]="books.image" alt="book-profile">
+            </mat-card-content>
+            <mat-card-content class="book-container-content-div">
+                <h4>{{books.title}}</h4>
+                <p>{{books.author}}</p>
+                <div class="rating-div">
+                    <h5>{{books.rating}} <img src="../../../assets/Icons/star_24dp_FILL1_wght100_GRAD0_opsz24.svg"
+                            alt=""></h5>
+                    <p>({{books.ratingCount}})</p>
+                </div>
+                <div class="price-div">
+                    <h4>Rs.{{books.price}} </h4>
+                    <p><del>Rs.{{books.originalPrice}}</del></p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

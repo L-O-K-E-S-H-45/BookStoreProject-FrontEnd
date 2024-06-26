@@ -1,0 +1,35 @@
+<mat-toolbar class="nav-bar">
+    <mat-toolbar-row class="nav-bar-content">
+        <div class="nav-bar-content-s1">
+            <div class="header-content">
+                <img src="../../../assets/Images/openbook-header.png" alt="open-book">
+                <p>Bookstore</p>
+            </div>
+        </div>
+        <div class="nav-bar-content-s2" [ngClass]=" {'focused': isFocused}">
+            <button mat-icon-button (click)="onFocus()"><img
+                    src="../../../assets/Icons/search_24dp_FILL0_wght400_GRAD0_opsz24.svg" alt="Search Logo"></button>
+            <input type="text" [(ngModel)]="value" placeholder="Search" (keyup)="search($event)"
+                class="nav-bar-content-s2-input" (focus)="onFocus()" (blur)="onBlur()"
+                [ngClass]="{'focused': isFocused}" #searchInput>
+            <button class="close-btn" *ngIf="isFocused || value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="clearValue()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="nav-bar-content-s3">
+            <button class="profile-btn">
+                <img src="../../../assets/Icons/person_24dp_FILL0_wght400_GRAD0_opsz24.svg" alt="profile">
+                <p>Profile</p>
+            </button>
+            <button class="cart-btn">
+                <img src="../../../assets/Icons/shopping_cart_24dp_FILL0_wght400_GRAD0_opsz24.svg" alt="cart">
+                <p>Cart</p>
+            </button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet class="children">
+    <!-- <app-books-container></app-books-container> -->
+</router-outlet>

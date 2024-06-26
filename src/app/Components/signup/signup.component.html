@@ -1,0 +1,27 @@
+<form [formGroup]="SignupForm" (ngSubmit)="onSignup()" class="signup-form">
+
+    <div class="input-divs">
+        <label> FullName</label>
+        <input type="text" formControlName="fullname">
+    </div>
+    <div class="input-divs">
+        <label> Email Id</label>
+        <input type="email" formControlName="email">
+    </div>
+    <div class="input-divs" id="pwd-inp">
+        <label> Password</label>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button (click)="toggleHidePassword($event)" class=" eye-icon">
+            <img *ngIf="hidePassword" src="../../../assets/Icons/visibility_24dp_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <img *ngIf="!hidePassword" src="../../../assets/Icons/visibility_off_24dp_FILL0_wght400_GRAD0_opsz24.svg"
+                alt=""></button>
+    </div>
+    <div class="input-divs" id="mobile-div">
+        <label> Mobile Number</label>
+        <input type="text" formControlName="mobile">
+    </div>
+    <div class="input-divs" id="signup-div">
+        <button type="submit">Signup</button>
+    </div>
+
+</form>
