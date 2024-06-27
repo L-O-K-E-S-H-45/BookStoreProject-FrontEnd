@@ -11,7 +11,7 @@
     </div>
 
     <div class="books-container-section-2">
-        <mat-card *ngFor="let books of booksList" class="book-container">
+        <mat-card *ngFor="let books of booksList" class="book-container" (click)="goToGetBook(books)">
             <mat-card-content class="book-container-image-div">
                 <img [src]="books.image" alt="book-profile">
             </mat-card-content>
@@ -28,6 +28,7 @@
                     <p><del>Rs.{{books.originalPrice}}</del></p>
                 </div>
             </mat-card-content>
+            <!-- <app-display-book [bookObj]="books"></app-display-book> -->
         </mat-card>
     </div>
 

@@ -1,16 +1,109 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { BookService } from '../../Services/book/book.service';
+import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators'
 
 @Component({
   selector: 'app-get-book',
   templateUrl: './get-book.component.html',
   styleUrl: './get-book.component.scss'
 })
-export class GetBookComponent implements OnInit {
+export class GetBookComponent implements OnInit, OnDestroy {
 
-  @Input() bookObject: any;
+  bookObject: any;
+  // no use
+  private routerSubscription!: Subscription; // Use the non-null assertion operator
 
+  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
+    // 1st way-> getting bookId from local-storage
+    // this.onGetBookById();
+
+    // ----not fetching
+    // const navigation = this.router.getCurrentNavigation();
+    // this.bookObject = navigation?.extras?.state?.['book'];
+    //---- not fetching
+    // this.route.paramMap.subscribe(params => {
+    //   const navigation = this.router.getCurrentNavigation();
+    //   if (navigation?.extras?.state) {
+    //     this.bookObject = navigation.extras.state['book'];
+    //     console.log('Book Object:', this.bookObject); // Debug: Check the book object
+    //   } else {
+    //     console.log('Navigation state is not available.');
+    //   }
+    // });
+
+    //---- fetching but after refresh book data will be gone, so bookObject is stored in local-sorage
+    // this.bookService.book$.subscribe(book => {
+    //   if (book) {
+    //     this.bookObject = book;
+    //     console.log('Book Object:', this.bookObject); // Debug: Check the book object
+    //   } else {
+    //     console.log('Book state is not available.');
+    //   }
+    // });
+
+    // 2nd way -> working, here book getting from local-storage
+    this.bookObject = this.bookService.getBookFromLocalStorage();
+    if (!this.bookObject) {
+      this.bookService.book$.subscribe(book => {
+        if (book) {
+          this.bookObject = book;
+          console.log('Book Object:', this.bookObject); // Debug: Check the book object
+        } else {
+          console.log('Book state is not available.');
+        }
+      });
+    }
+
+    //---- fetching book from local-strage & clearing local-storage after moving away from 'getbook; page
+    // not working
+    // this.routerSubscription = this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd && event.url !== '/bookstore/home/getbook') {
+    //     this.bookService.clearBookFromLocalStorage();
+    //   }
+    // });
+    // not working
+    // this.routerSubscription = this.router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd),
+    // ).subscribe(() => {
+    //   console.log('inside rotersub')
+    //   const currentUrlSegments: UrlSegment[] = this.activatedRoute.snapshot.url;
+    //   const currentUrl = '/' + currentUrlSegments.map(segment => segment.path).join('/');
+    //   console.log('middle rotersub')
+    //   if (currentUrl !== '/bookstore/home/getbook') {
+    //     this.bookService.clearBookFromLocalStorage();
+    //   }
+    //   console.log('end rotersub')
+    // });
 
   }
+
+  // no use
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
+
+  onGetBookById() {
+    // let bookId = localStorage.getItem("bookId") || "defaultBookId"
+    let bookId = localStorage.getItem("bookId");
+    if (!bookId) {
+      console.error("BookId not found in localStorage");
+    }
+    else {
+      let data = {
+        bookId: localStorage.getItem("bookId")
+
+      }
+      this.bookService.GetBookById(data).subscribe((response: any) => {
+        console.log(response);
+        this.bookObject = response.data;
+      })
+    }
+  }
+
 
 }

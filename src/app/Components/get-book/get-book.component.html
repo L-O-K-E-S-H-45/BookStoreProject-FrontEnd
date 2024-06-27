@@ -1,7 +1,50 @@
-<div class="getbook-container">
-    <p>get-book works!</p>
+<mat-card *ngIf="bookObject" class="getbook-container">
+    <mat-card-content class="getbook-container-start">
+        <span>Home /<p>Book({{bookObject.bookId}})</p></span>
 
-    <div></div>
-
-
-</div>
+        <div class="getbook-maincontent">
+            <div class="getbook-left-section">
+                <div class="getbook-left-section-left">
+                    <img [src]="bookObject.image" alt="book-image">
+                </div>
+                <div class="getbook-left-section-right">
+                    <mat-card class="getbook-left-section-right-top">
+                        <img [src]="bookObject.image" alt="book-image">
+                    </mat-card>
+                    <div class="getbook-left-section-right-bottom">
+                        <button mat-flat-button class="cart-btn">ADD TO BAG</button>
+                        <button class="wishlist-btn"><img
+                                src="../../../assets/Icons/favorite_20dp_FILL1_wght400_GRAD0_opsz20.svg" alt="fovorite">
+                            <span>WISHLIST</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="getbook-right-section">
+                <div class="getbook-right-section-aboutbook">
+                    <h4>{{bookObject.title}}</h4>
+                    <p>{{bookObject.author}}</p>
+                    <div class="rating-div">
+                        <h5>{{bookObject.rating}} <img
+                                src="../../../assets/Icons/star_24dp_FILL1_wght100_GRAD0_opsz24.svg" alt=""></h5>
+                        <p>({{bookObject.ratingCount}})</p>
+                    </div>
+                    <div class="price-div">
+                        <h4>Rs.{{bookObject.price}} </h4>
+                        <p><del>Rs.{{bookObject.originalPrice}}</del></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="getbook-right-section-description">
+                    <ul>
+                        <li>Book Detail</li>
+                    </ul>
+                    <p>{{bookObject.description}}</p>
+                </div>
+                <hr>
+                <div class="getbook-right-section-feedback">
+                    <h4>Customer Feedback</h4>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,4 +1,6 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { BookService } from '../../Services/book/book.service';
 
 @Component({
   selector: 'app-get-all-books',
@@ -8,9 +10,9 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 export class GetAllBooksComponent implements OnInit {
 
   booksCount: number = 0;
-
+  getBook: any;
   @Input() booksList: any[] = [];
-
+  constructor(private router: Router, private bookService: BookService) { }
   ngOnInit(): void {
     this.updateBooksCount();
   }
@@ -42,6 +44,29 @@ export class GetAllBooksComponent implements OnInit {
         this.booksList.sort((a, b) => a.bookId - b.bookId);
         break;
     }
+  }
+
+
+  goToGetBook(book: any) {
+    console.log(book)
+    // this.getBook = book;
+    // console.log(this.getBook)
+    // this.router.navigate(['/bookstore/home/getbook'], { state: { book } })
+    // console.log({ state: { book } })
+
+    // this.router.navigate(['/bookstore/home/getbook'], { state: { book } }).then(() => {
+    //   console.log({ state: { book } });
+    // });
+
+    //---- working
+    // this.bookService.setBook(book);
+    // this.router.navigate(['/bookstore/home/getbook']);
+
+    this.bookService.setBook(book);
+    this.bookService.saveBookToLocalStorage(book);
+    localStorage.setItem("bookId", book.bookId);
+    this.router.navigate(['/bookstore/home/getbook']);
+
   }
 
 
