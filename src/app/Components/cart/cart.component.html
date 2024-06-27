@@ -1,0 +1,57 @@
+<div class="Maincart-container">
+    <div class="header">
+        <a href="/bookstore/home">Home /</a>
+        <h5>My cart</h5>
+
+    </div>
+
+    <div class="carts-container">
+        <mat-card *ngFor="let cart of cartList" class="cart">
+            <mat-card-content class="cart-content">
+                <div class="cart-content-left">
+                    <h2>My cart ({{cart.cartId}})</h2>
+                    <div class="cart-content-left-content-div">
+                        <img [src]="cart.image" alt="cart-image">
+                        <div class="cart-content-left-content-div-description">
+                            <h1>{{cart.title}}</h1>
+                            <p>{{cart.author}}</p>
+                            <div class="cart-price">
+                                <h1>Rs.{{cart.finalBookPrice}}</h1>
+                                <p><del>Rs.{{cart.originalBookPrice}}</del></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-btns">
+                        <div class="update-btns">
+                            <!-- (click)="bookCount = bookCount-1" also wrks-->
+                            <button (click)="reduceBookCount(cart)"><img
+                                    src="../../../assets/Icons/remove_20dp_FILL0_wght400_GRAD0_opsz20.svg"
+                                    alt="negative-icon"></button>
+                            <h5>{{bookCount}}</h5>
+                            <button (click)="increaseBookCount(cart)"><img
+                                    src="../../../assets/Icons/add_20dp_FILL0_wght400_GRAD0_opsz20.svg"
+                                    alt="add-icon"></button>
+                        </div>
+                        <div class="remove-btn"><button mat-button (click)="onRemoveCart(cart)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-content-right">
+                    <div class="location-div">
+                        <img src="../../../assets/Icons/distance_20dp_FILL1_wght400_GRAD0_opsz20.svg"
+                            alt="location-icon">
+                        <select name="" id="">
+                            <option value="">Use current location</option>
+                        </select>
+                    </div>
+                    <div class="placeorder-btn">
+                        <button (click)="onPlaceOrder(cart)">PLACE ORDER</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+
+</div>

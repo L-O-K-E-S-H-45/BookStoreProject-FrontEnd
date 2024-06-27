@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   value: string = '';
   isFocused: boolean = false;
@@ -16,6 +16,10 @@ export class HomeComponent {
   // @Output() updateRefreshEvent = new EventEmitter<string>();
 
   constructor(private route: Router) { }
+
+  ngOnInit(): void {
+
+  }
 
   onFocus() {
     this.isFocused = true;
@@ -42,6 +46,11 @@ export class HomeComponent {
   search(event: any) {
     console.log(event.target.value);
     // this.dataService.outgoingData(event.target.value);
+  }
+
+  //----------
+  goToCart() {
+    this.route.navigateByUrl('/bookstore/carts');
   }
 
 }

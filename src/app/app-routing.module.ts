@@ -6,6 +6,7 @@ import { SignupComponent } from './Components/signup/signup.component';
 import { HomeComponent } from './Components/home/home.component';
 import { BooksContainerComponent } from './Components/books-container/books-container.component';
 import { GetBookComponent } from './Components/get-book/get-book.component';
+import { CartComponent } from './Components/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/bookstore/home', pathMatch: 'full' },
       { path: 'home', component: BooksContainerComponent },
-      { path: 'home/getbook', component: GetBookComponent },
+      { path: 'home/getbook/:bookId', component: GetBookComponent },
+      { path: 'carts', component: CartComponent },
     ]
   },
   {

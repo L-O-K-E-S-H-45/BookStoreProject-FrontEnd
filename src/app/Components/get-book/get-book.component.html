@@ -12,7 +12,7 @@
                         <img [src]="bookObject.image" alt="book-image">
                     </mat-card>
                     <div class="getbook-left-section-right-bottom">
-                        <button mat-flat-button class="cart-btn">ADD TO BAG</button>
+                        <button mat-flat-button (click)="addToCart()" class="cart-btn">ADD TO BAG</button>
                         <button class="wishlist-btn"><img
                                 src="../../../assets/Icons/favorite_20dp_FILL1_wght400_GRAD0_opsz20.svg" alt="fovorite">
                             <span>WISHLIST</span></button>

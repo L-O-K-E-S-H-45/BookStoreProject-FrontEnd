@@ -31,7 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GetAllBooksComponent } from './Components/get-all-books/get-all-books.component';
 import { BooksContainerComponent } from './Components/books-container/books-container.component';
 import { GetBookComponent } from './Components/get-book/get-book.component';
-import { DisplayBookComponent } from './Components/display-book/display-book.component';
+import { CartComponent } from './Components/cart/cart.component';
 
 
 
@@ -45,7 +45,7 @@ import { DisplayBookComponent } from './Components/display-book/display-book.com
     GetAllBooksComponent,
     BooksContainerComponent,
     GetBookComponent,
-    DisplayBookComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

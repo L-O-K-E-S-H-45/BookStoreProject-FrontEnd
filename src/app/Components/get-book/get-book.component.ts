@@ -3,6 +3,8 @@ import { BookService } from '../../Services/book/book.service';
 import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators'
+import { CartService } from '../../Services/cart/cart.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-get-book',
@@ -11,14 +13,20 @@ import { filter } from 'rxjs/operators'
 })
 export class GetBookComponent implements OnInit, OnDestroy {
 
-  bookObject: any;
   // no use
   private routerSubscription!: Subscription; // Use the non-null assertion operator
 
-  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  bookObject: any;
+  bookId: any;
+
+  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute,
+    private router: Router, private cartService: CartService) {
+    // 3rd way
+    this.bookId = this.activatedRoute.snapshot.params['bookId'];
+  }
   ngOnInit(): void {
     // 1st way-> getting bookId from local-storage
-    // this.onGetBookById();
+    this.onGetBookById();
 
     // ----not fetching
     // const navigation = this.router.getCurrentNavigation();
@@ -45,17 +53,17 @@ export class GetBookComponent implements OnInit, OnDestroy {
     // });
 
     // 2nd way -> working, here book getting from local-storage
-    this.bookObject = this.bookService.getBookFromLocalStorage();
-    if (!this.bookObject) {
-      this.bookService.book$.subscribe(book => {
-        if (book) {
-          this.bookObject = book;
-          console.log('Book Object:', this.bookObject); // Debug: Check the book object
-        } else {
-          console.log('Book state is not available.');
-        }
-      });
-    }
+    // this.bookObject = this.bookService.getBookFromLocalStorage();
+    // if (!this.bookObject) {
+    //   this.bookService.book$.subscribe(book => {
+    //     if (book) {
+    //       this.bookObject = book;
+    //       console.log('Book Object:', this.bookObject); // Debug: Check the book object
+    //     } else {
+    //       console.log('Book state is not available.');
+    //     }
+    //   });
+    // }
 
     //---- fetching book from local-strage & clearing local-storage after moving away from 'getbook; page
     // not working
@@ -88,22 +96,53 @@ export class GetBookComponent implements OnInit, OnDestroy {
   }
 
   onGetBookById() {
+    console.log('get book')
+    // 1st way
     // let bookId = localStorage.getItem("bookId") || "defaultBookId"
-    let bookId = localStorage.getItem("bookId");
-    if (!bookId) {
-      console.error("BookId not found in localStorage");
+    // let bookId = localStorage.getItem("bookId");
+    // if (!bookId) {console.error("BookId not found in localStorage");}
+    // 3rd way
+    if (!this.bookId) {
+      console.error("BookId not fetched");
     }
     else {
       let data = {
-        bookId: localStorage.getItem("bookId")
-
+        // bookId: localStorage.getItem("bookId")
+        bookId: this.bookId
       }
       this.bookService.GetBookById(data).subscribe((response: any) => {
         console.log(response);
         this.bookObject = response.data;
+
+        // if (response.status === 200) {
+        //   console.log(response);
+        // }
+        // else {
+        //   console.error(response.error);
+        // }
+        // }
+        // ,
+        //   error => {
+        //     console.error('HTTP request failed:', error);
+        //   }
+        // );
+
       })
     }
   }
 
+  addToCart() {
+    let userId = localStorage.getItem("token");
+    if (!userId) {
+      this.router.navigateByUrl('/bookstore/login-signup')
+      return;
+    }
+    let data = {
+      bookId: this.bookObject.bookId
+    }
+    this.cartService.AddBookToCart(data).subscribe((response: any) => {
+      console.log(response)
+    });
+  }
 
 }

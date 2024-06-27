@@ -14,7 +14,13 @@ export class GetAllBooksComponent implements OnInit {
   @Input() booksList: any[] = [];
   constructor(private router: Router, private bookService: BookService) { }
   ngOnInit(): void {
-    this.updateBooksCount();
+    // 2nd way to update books count
+    // this.updateBooksCount();
+  }
+
+  // 1st way to update books count
+  bookList() {
+    return this.booksList ? true : false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -22,7 +28,6 @@ export class GetAllBooksComponent implements OnInit {
       this.updateBooksCount();
     }
   }
-
   private updateBooksCount(): void {
     this.booksCount = this.booksList ? this.booksList.length : 0;
   }
@@ -65,7 +70,7 @@ export class GetAllBooksComponent implements OnInit {
     this.bookService.setBook(book);
     this.bookService.saveBookToLocalStorage(book);
     localStorage.setItem("bookId", book.bookId);
-    this.router.navigate(['/bookstore/home/getbook']);
+    this.router.navigate(['/bookstore/home/getbook', book.bookId]);
 
   }
 

@@ -1,7 +1,8 @@
 <div class="books-outer-conainer">
 
     <div class="books-container-section-1">
-        <h1>Books <span>({{booksCount}} items)</span> </h1>
+        <!-- <h1>Books <span>({{booksCount}} items)</span> </h1> -->
+        <h1>Books <span *ngIf='bookList()'>({{booksList.length}} items)</span> </h1>
         <select name="" id="" (change)="onSortChange($event)">
             <option value="relevance">Sort by relevance</option>
             <option value="priceLowToHigh">Price: Low to High</option>
