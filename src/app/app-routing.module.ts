@@ -7,6 +7,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { BooksContainerComponent } from './Components/books-container/books-container.component';
 import { GetBookComponent } from './Components/get-book/get-book.component';
 import { CartComponent } from './Components/cart/cart.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'home', component: BooksContainerComponent },
       { path: 'home/getbook/:bookId', component: GetBookComponent },
       { path: 'carts', component: CartComponent },
+      { path: 'wishlists', component: WishlistComponent },
     ]
   },
   {

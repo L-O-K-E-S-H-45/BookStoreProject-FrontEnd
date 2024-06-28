@@ -4,9 +4,8 @@
     box-sizing: border-box;
 }
 
-
 .Maincart-container {
-    height: fit-content;
+    // height: fit-content;
     width: 1000px;
     margin: auto;
     // background-color: antiquewhite;
@@ -32,16 +31,47 @@
 
 //-----
 .carts-container {
-    height: 215px;
+    height: fit-content;
     width: 75%;
     display: flex;
     flex-direction: column;
+    border: solid .1px rgb(211, 211, 211);
 }
 
+.carts-container-header-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.carts-container-header-div h2 {
+    font-size: 18px;
+    position: relative;
+    top: 10px;
+}
+
+.location-div {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: fit-content;
+    border: solid 1px lightgray;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.location-div select {
+    height: 20px;
+    width: 200px;
+    border: none;
+    outline: none;
+}
+
+//----
 .cart {
     height: 100%;
     width: 100%;
-    border: solid .1px rgb(211, 211, 211);
     padding: 0px 20px !important;
 }
 
@@ -56,10 +86,6 @@
     width: 50%;
     height: 100%;
     // background-color: aquamarine;
-}
-
-.cart-content-left h2 {
-    font-size: 18px;
 }
 
 .cart-content-left-content-div {
@@ -109,7 +135,7 @@
 .cart-btns {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: -10px;
     gap: 30px;
     justify-content: flex-end;
     margin-right: 30px;
@@ -130,14 +156,14 @@
 }
 
 .update-btns img {
-    height: 18px;
-    width: 18px;
+    height: 17px;
+    width: 17px;
     border: solid 1px gray;
     border-radius: 50%;
 }
 
 .update-btns h5 {
-    height: 20px;
+    height: 19px;
     width: 35px;
     border: solid 1px gray;
     margin-top: 10px;
@@ -146,12 +172,13 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
+    padding-top: 3px;
 }
 
 .remove-btn button {
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 1px;
-
+    margin-top: 3px;
 }
 
 //----------
@@ -164,44 +191,21 @@
 
 }
 
-.location-div {
-    display: flex;
-    align-items: center;
-    // justify-content: center;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    height: 30px;
-    width: fit-content;
-    border: solid 1px lightgray;
-    padding: 5px;
-    border-radius: 3px;
-}
-
-.location-div select {
-    height: 20px;
-    width: 200px;
-    border: none;
-    outline: none;
-}
-
 .placeorder-btn {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 82px;
 }
 
 .placeorder-btn button {
     height: 30px;
     width: 130px;
-    background-color: rgb(58, 58, 238);
+    background-color: #3371B5;
     color: white;
     font-size: 12px;
     letter-spacing: .5px;
-    border-radius: 5px;
+    border-radius: 3px;
     border: none;
     cursor: pointer;
 }

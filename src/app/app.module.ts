@@ -32,6 +32,7 @@ import { GetAllBooksComponent } from './Components/get-all-books/get-all-books.c
 import { BooksContainerComponent } from './Components/books-container/books-container.component';
 import { GetBookComponent } from './Components/get-book/get-book.component';
 import { CartComponent } from './Components/cart/cart.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
 
 
 
@@ -46,6 +47,7 @@ import { CartComponent } from './Components/cart/cart.component';
     BooksContainerComponent,
     GetBookComponent,
     CartComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ export class HttpService {
   }
 
   putService(reqUrl: string, payload: any, token: boolean = true, httpOptions: any = {}) {
-    return this.httpClient.post(reqUrl, payload, token && httpOptions);
+    return this.httpClient.put(reqUrl, payload, token && httpOptions);
   }
 
   deleteService(reqUrl: string, token: boolean = true, httpOptions: any = {}) {

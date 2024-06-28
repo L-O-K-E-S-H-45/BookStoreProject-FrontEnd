@@ -2,14 +2,21 @@
     <div class="header">
         <a href="/bookstore/home">Home /</a>
         <h5>My cart</h5>
-
     </div>
 
-    <div class="carts-container">
+    <mat-card class="carts-container">
+        <div class="carts-container-header-div">
+            <h2>My cart <span *ngIf="ifCartList()">({{cartList.length}})</span> </h2>
+            <div class="location-div">
+                <img src="../../../assets/Icons/distance_20dp_FILL1_wght400_GRAD0_opsz20.svg" alt="location-icon">
+                <select name="" id="">
+                    <option value="">Use current location</option>
+                </select>
+            </div>
+        </div>
         <mat-card *ngFor="let cart of cartList" class="cart">
             <mat-card-content class="cart-content">
                 <div class="cart-content-left">
-                    <h2>My cart ({{cart.cartId}})</h2>
                     <div class="cart-content-left-content-div">
                         <img [src]="cart.image" alt="cart-image">
                         <div class="cart-content-left-content-div-description">
@@ -27,7 +34,7 @@
                             <button (click)="reduceBookCount(cart)"><img
                                     src="../../../assets/Icons/remove_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                                     alt="negative-icon"></button>
-                            <h5>{{bookCount}}</h5>
+                            <h5>{{cart.quantity}}</h5>
                             <button (click)="increaseBookCount(cart)"><img
                                     src="../../../assets/Icons/add_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                                     alt="add-icon"></button>
@@ -37,21 +44,14 @@
                     </div>
                 </div>
                 <div class="cart-content-right">
-                    <div class="location-div">
-                        <img src="../../../assets/Icons/distance_20dp_FILL1_wght400_GRAD0_opsz20.svg"
-                            alt="location-icon">
-                        <select name="" id="">
-                            <option value="">Use current location</option>
-                        </select>
-                    </div>
+
                     <div class="placeorder-btn">
                         <button (click)="onPlaceOrder(cart)">PLACE ORDER</button>
                     </div>
                 </div>
             </mat-card-content>
         </mat-card>
-    </div>
-
+    </mat-card>
 
 
 </div>

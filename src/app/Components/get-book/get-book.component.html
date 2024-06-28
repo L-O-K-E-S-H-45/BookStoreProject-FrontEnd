@@ -12,10 +12,16 @@
                         <img [src]="bookObject.image" alt="book-image">
                     </mat-card>
                     <div class="getbook-left-section-right-bottom">
-                        <button mat-flat-button (click)="addToCart()" class="cart-btn">ADD TO BAG</button>
-                        <button class="wishlist-btn"><img
+                        <button *ngIf="!isAddedToCart" mat-flat-button (click)="addToCart()" class="cart-btn">ADD TO
+                            BAG</button>
+                        <button *ngIf="isAddedToCart" mat-flat-button (click)="goToCart()" class="cart-btn">Go To
+                            Cart</button>
+                        <button *ngIf="!isAddedToWishlist" (click)="AddToWishlist()" class="wishlist-btn"><img
                                 src="../../../assets/Icons/favorite_20dp_FILL1_wght400_GRAD0_opsz20.svg" alt="fovorite">
                             <span>WISHLIST</span></button>
+                        <button *ngIf="isAddedToWishlist" (click)="goToWishlist()" class="wishlist-btn"><img
+                                src="../../../assets/Icons/favorite_20dp_FILL1_wght400_GRAD0_opsz20.svg" alt="fovorite">
+                            <span>Go To WISHLIST</span></button>
                     </div>
                 </div>
             </div>

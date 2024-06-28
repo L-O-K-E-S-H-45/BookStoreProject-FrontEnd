@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators'
 import { CartService } from '../../Services/cart/cart.service';
 import { error } from 'console';
+import { WishlistService } from '../../Services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-get-book',
@@ -18,9 +19,10 @@ export class GetBookComponent implements OnInit, OnDestroy {
 
   bookObject: any;
   bookId: any;
-
+  isAddedToCart: boolean = false;
+  isAddedToWishlist: boolean = false;
   constructor(private bookService: BookService, private activatedRoute: ActivatedRoute,
-    private router: Router, private cartService: CartService) {
+    private router: Router, private cartService: CartService, private wishlistService: WishlistService) {
     // 3rd way
     this.bookId = this.activatedRoute.snapshot.params['bookId'];
   }
@@ -71,19 +73,6 @@ export class GetBookComponent implements OnInit, OnDestroy {
     //   if (event instanceof NavigationEnd && event.url !== '/bookstore/home/getbook') {
     //     this.bookService.clearBookFromLocalStorage();
     //   }
-    // });
-    // not working
-    // this.routerSubscription = this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd),
-    // ).subscribe(() => {
-    //   console.log('inside rotersub')
-    //   const currentUrlSegments: UrlSegment[] = this.activatedRoute.snapshot.url;
-    //   const currentUrl = '/' + currentUrlSegments.map(segment => segment.path).join('/');
-    //   console.log('middle rotersub')
-    //   if (currentUrl !== '/bookstore/home/getbook') {
-    //     this.bookService.clearBookFromLocalStorage();
-    //   }
-    //   console.log('end rotersub')
     // });
 
   }
@@ -141,8 +130,32 @@ export class GetBookComponent implements OnInit, OnDestroy {
       bookId: this.bookObject.bookId
     }
     this.cartService.AddBookToCart(data).subscribe((response: any) => {
-      console.log(response)
+      console.log(response);
+      this.isAddedToCart = true;
     });
+  }
+
+  goToCart() {
+    this.router.navigateByUrl('/bookstore/carts');
+  }
+
+  AddToWishlist() {
+    let userId = localStorage.getItem("token");
+    if (!userId) {
+      this.router.navigateByUrl('/bookstore/login-signup')
+      return;
+    }
+    let data = {
+      bookId: this.bookObject.bookId
+    }
+    this.wishlistService.AddBookToWishlist(data).subscribe((response: any) => {
+      console.log(response)
+      this.isAddedToWishlist = true;
+    });
+  }
+
+  goToWishlist() {
+    this.router.navigateByUrl('/bookstore/wishlists');
   }
 
 }
