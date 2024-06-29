@@ -1,49 +1,3 @@
-// import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-// import { AddressService } from '../../Services/address/address.service';
-// import { FormBuilder, FormGroup } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-address-details',
-//   templateUrl: './address-details.component.html',
-//   styleUrl: './address-details.component.scss'
-// })
-// export class AddressDetailsComponent implements OnInit {
-//   addressForm !: FormGroup
-//   addressExist: boolean = false;
-//   @Input() addressList: any;
-//   @Output() addressAdded = new EventEmitter<any>();
-
-//   constructor(private addressService: AddressService, private formBuilder: FormBuilder) { }
-//   ngOnInit(): void {
-//     this.addressForm = this.formBuilder.group({
-//       fullName: [''],
-//       mobile: [''],
-//       address: [''],
-//       city: [''],
-//       state: [''],
-//       type: [''],
-//     })
-//     this.addressExist = (this.addressList && this.addressList.length > 0) ? true : false;
-//   }
-
-//   onContinue() {
-//     let data = {
-//       fullName: this.addressForm.value.fullName,
-//       mobile: this.addressForm.value.mobile,
-//       address: this.addressForm.value.address,
-//       city: this.addressForm.value.city,
-//       state: this.addressForm.value.state,
-//       type: this.addressForm.value.type,
-//     }
-//     this.addressService.AddAddress(data).subscribe((response: any) => {
-//       console.log(response);
-//       this.addressAdded.emit(response.data);
-//       // localStorage.setItem("selectedAddress", JSON.stringify(response.data));
-//     })
-//   }
-
-// }
-
 
 //------------------------
 
@@ -119,9 +73,6 @@ export class AddressDetailsComponent implements OnInit {
     this.addressSelected.emit(address);
   }
 }
-
-
-
 
 
 
