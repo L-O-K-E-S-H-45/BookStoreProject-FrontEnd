@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../Services/book/book.service';
 
@@ -44,6 +44,9 @@ export class GetAllBooksComponent implements OnInit {
       case 'newestArrivals':
         this.booksList.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         break;
+      case 'alphabeticalOrder':
+        this.booksList.sort((a, b) => a.title.localeCompare(b.title));
+        break;
       case 'relevance':
       default:
         this.booksList.sort((a, b) => a.bookId - b.bookId);
@@ -71,7 +74,6 @@ export class GetAllBooksComponent implements OnInit {
     this.bookService.saveBookToLocalStorage(book);
     localStorage.setItem("bookId", book.bookId);
     this.router.navigate(['/bookstore/home/getbook', book.bookId]);
-
   }
 
 

@@ -1,0 +1,40 @@
+<div class="Maincart-container">
+    <div class="header">
+        <a href="/bookstore/home">Home /</a>
+        <h5>My cart <span *ngIf="ordersList">({{ordersList.length}})</span></h5>
+    </div>
+</div>
+
+<div class="carts-container">
+    <mat-card *ngFor="let order of ordersList" class="cart">
+        <mat-card-content class="cart-content">
+            <div class="cart-content-left">
+                <div class="cart-content-left-content-div">
+                    <img [src]="order.image" alt="cart-image">
+                    <div class="cart-content-left-content-div-description">
+                        <h1>{{order.title}}</h1>
+                        <p>{{order.author}}</p>
+                        <div class="cart-price">
+                            <h1>Rs.{{order.totalFinalBookPrice}}</h1>
+                            <p><del>Rs.{{order.totalOriginalBookPrice}}</del></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cart-content-right">
+                <ul>
+                    <!-- 1st way -->
+                    <!-- <li>Order placed on {{ getFormattedDate(order.orderDateTime) }}</li> -->
+                    <!-- 2nd way  -->
+                    <li>
+                        <span class="text">Order placed on {{ order.orderDateTime | date: 'dd MMMM yyyy' }}</span>
+                    </li>
+                </ul>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <br><br><br>
+
+</div>

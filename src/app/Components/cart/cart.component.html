@@ -46,12 +46,65 @@
                 <div class="cart-content-right">
 
                     <div class="placeorder-btn">
-                        <button (click)="onPlaceOrder(cart)">PLACE ORDER</button>
+                        <button *ngIf="!ifPlaceOrderClicked" (click)="onPlaceOrder(cart)">PLACE ORDER</button>
                     </div>
                 </div>
             </mat-card-content>
         </mat-card>
     </mat-card>
 
+    <br><br><br>
+
+    <!-- -------------------------------------------- -->
+
+    <mat-card *ngIf="!ifPlaceOrderClicked" class="address-details-card">
+        <h4>Address Details</h4>
+    </mat-card>
+
+    <app-address-details *ngIf="ifPlaceOrderClicked" [addressList]="addressArray"
+        (addressAdded)="onAddressAdded($event)" (addressSelected)="onAddressSelected($event)"></app-address-details>
+
+    <mat-accordion class="example-headers-align" id="mat-accordion">
+
+        <!-- <mat-expansion-panel *ngIf="ifPlaceOrderClicked" [expanded]="step() === 0" (opened)="setStep(0)" hideToggle
+            class="m1">
+            <mat-expansion-panel-header>
+                <mat-panel-title> Customer Details</mat-panel-title>
+                <button *ngIf="addressArray && addressArray.length > 0" mat-button> Add New Address</button>
+            </mat-expansion-panel-header>
+            <app-address-details [addressList]="addressArray" (addressAdded)="onAddressAdded($event)"
+                (addressSelected)="onAddressSelected($event)"></app-address-details>
+
+        </mat-expansion-panel> -->
+
+        <mat-expansion-panel [expanded]="step() === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Order Summary </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf="selectedCart && selectedAddress">
+                <div class="cart-content-left-content-div">
+                    <img [src]="selectedCart.image" alt="cart-image">
+                    <div class="cart-content-left-content-div-description">
+                        <h1>{{selectedCart.title}}</h1>
+                        <p>{{selectedCart.author}}</p>
+                        <div class="cart-price">
+                            <h1>Rs.{{selectedCart.finalBookPrice}}</h1>
+                            <p><del>Rs.{{selectedCart.originalBookPrice}}</del></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="placeorder-btn" id="checkout-btn">
+                    <button (click)="onCheckout(selectedCart)">CHECKOUT</button>
+                </div>
+            </div>
+            <!-- <mat-action-row>
+                <button mat-button (click)="prevStep()">Previous</button>
+                <button mat-button (click)="nextStep()">End</button>
+            </mat-action-row> -->
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <br><br><br>
+    <!-- ----------------------------------------------- -->
 
 </div>

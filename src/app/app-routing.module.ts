@@ -8,6 +8,8 @@ import { BooksContainerComponent } from './Components/books-container/books-cont
 import { GetBookComponent } from './Components/get-book/get-book.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { OrderSuccessComponent } from './Components/order-success/order-success.component';
+import { OrdersComponent } from './Components/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,8 @@ const routes: Routes = [
       { path: 'home/getbook/:bookId', component: GetBookComponent },
       { path: 'carts', component: CartComponent },
       { path: 'wishlists', component: WishlistComponent },
+      { path: 'ordersuccess', component: OrderSuccessComponent },
+      { path: 'orders', component: OrdersComponent },
     ]
   },
   {

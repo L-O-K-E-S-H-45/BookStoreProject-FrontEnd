@@ -1,0 +1,152 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.main-address-container {
+    width: 750px;
+    padding: 20px 20px;
+    border: solid .5px lightgray;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-size: 18px;
+}
+
+.header button {
+    border: solid 1px crimson;
+    height: 27px;
+    width: 140px;
+    font-size: 11px;
+    letter-spacing: .5px;
+    color: crimson;
+}
+
+label {
+    font-size: 14px;
+    letter-spacing: .5px;
+    font-weight: 500;
+}
+
+
+mat-radio-button {
+    font-size: 10px !important;
+    height: 10px !important;
+    width: 10px !important;
+}
+
+#divs {
+    width: 500px;
+    // background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+}
+
+#divs div {
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    width: 48%;
+    // background-color: antiquewhite;
+}
+
+.addres-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.type-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input {
+    height: 40px;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    letter-spacing: .5px;
+    margin-bottom: 15px;
+}
+
+mat-radio-group {
+    margin-left: -10px;
+}
+
+mat-radio-button {
+    margin-right: 50px;
+}
+
+.continue-btn {
+    margin-left: 550px;
+    margin-top: -10px;
+    height: 30px;
+    width: 130px;
+    background-color: #3371B5;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    margin-left: 400px;
+    margin-top: -50px;
+    height: 30px;
+    width: 100px;
+    background-color: #f10928;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.address-mat-card {
+    padding: 10px 10px;
+    margin-bottom: 20px;
+}
+
+.address-form {
+    // display: flex;
+    // gap: 10px;
+
+}
+
+.edit-select-btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-right: 20px;
+    margin-top: -20px;
+}
+
+.edit-select-btns button {
+    height: 26px;
+    width: 100px;
+    color: white;
+    cursor: pointer;
+}
+
+.select-btn {
+    background-color: #3371B5;
+}
+
+.edit-btn {
+    background-color: #c456be;
+}

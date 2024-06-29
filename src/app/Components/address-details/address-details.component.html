@@ -1,0 +1,105 @@
+<!-- <div class="main-address-container">
+    
+    <form [formGroup]="addressForm" (ngSubmit)="onContinue()" action="" class="address-form">
+        <div class="name-mobile-div" id="divs">
+            <div><label> Full Name</label><input type="text" formControlName="fullName"></div>
+            <div><label> Mobile</label><input type="tel" formControlName="mobile"></div>
+        </div>
+        <div class="addres-div" id="divs">
+            <label>Address</label><input type="text" name="" id="" formControlName="address">
+        </div>
+        <div class="city-state-div" id="divs">
+            <div><label> city/town</label><input type="text" formControlName="city"></div>
+            <div><label> state</label><input type="text" formControlName="state"></div>
+        </div>
+        <div class="type-div" id="divs">
+            <label>Type</label>
+            <mat-radio-group aria-label="Select an option" formControlName="type">
+                <mat-radio-button value="Home">Home</mat-radio-button>
+                <mat-radio-button value="Work">Work</mat-radio-button>
+                <mat-radio-button value="Other">Other</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <button mat-button type="submit" color="primary" class="continue-btn">CONTINUE</button>
+    </form>
+</div> -->
+
+
+<!-- --------------------------- -->
+
+<mat-card class="main-address-container">
+    <div class="header">
+        <h1>Customer details</h1>
+        <button *ngIf="addressExist && !showForm" (click)="showAddAddressForm()">Add New Address</button>
+    </div>
+
+    <form *ngIf="!addressExist || showForm" (ngSubmit)="onContinue()" class="address-form">
+        <div class="name-mobile-div" id="divs">
+            <div><label>Full Name</label><input type="text" [(ngModel)]="newAddress.fullName" name="fullName"></div>
+            <div><label>Mobile</label><input type="tel" [(ngModel)]="newAddress.mobile" name="mobile"></div>
+        </div>
+        <div class="addres-div" id="divs">
+            <label>Address</label><input type="text" [(ngModel)]="newAddress.address" name="address">
+        </div>
+        <div class="city-state-div" id="divs">
+            <div><label>City/Town</label><input type="text" [(ngModel)]="newAddress.city" name="city"></div>
+            <div><label>State</label><input type="text" [(ngModel)]="newAddress.state" name="state"></div>
+        </div>
+        <div class="type-div" id="divs">
+            <label>Type</label>
+            <mat-radio-group [(ngModel)]="newAddress.type" name="type">
+                <mat-radio-button value="Home">Home</mat-radio-button>
+                <mat-radio-button value="Work">Work</mat-radio-button>
+                <mat-radio-button value="Other">Other</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <button mat-button type="submit" color="primary" class="continue-btn">CONTINUE</button>
+        <button mat-button color="primary" class="cancel-btn" (click)="onCancel()">CANCEL</button>
+    </form>
+
+    <div *ngIf="addressExist && !showForm">
+        <form *ngFor="let address of addressList" class="address-form">
+            <mat-card class="address-mat-card">
+                <div class="name-mobile-div" id="divs">
+                    <div><label>Full Name</label><input type="text" [(ngModel)]="address.fullName"
+                            [readonly]="!address.isEditing" name="fullName-{{address.id}}"></div>
+                    <div><label>Mobile</label><input type="tel" [(ngModel)]="address.mobile"
+                            [readonly]="!address.isEditing" name="mobile-{{address.id}}"></div>
+                </div>
+                <div class="addres-div" id="divs">
+                    <label>Address</label><input type="text" [(ngModel)]="address.address"
+                        [readonly]="!address.isEditing" name="address-{{address.id}}">
+                </div>
+                <div class="city-state-div" id="divs">
+                    <div><label>City/Town</label><input type="text" [(ngModel)]="address.city"
+                            [readonly]="!address.isEditing" name="city-{{address.id}}"></div>
+                    <div><label>State</label><input type="text" [(ngModel)]="address.state"
+                            [readonly]="!address.isEditing" name="state-{{address.id}}"></div>
+                </div>
+                <div class="type-div" id="divs">
+                    <label>Type</label>
+                    <mat-radio-group [(ngModel)]="address.type" [disabled]="!address.isEditing"
+                        name="type-{{address.addressId}}">
+                        <mat-radio-button value="Home">Home</mat-radio-button>
+                        <mat-radio-button value="Work">Work</mat-radio-button>
+                        <mat-radio-button value="Other">Other</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="edit-select-btns">
+                    <button class="edit-btn" mat-button color="primary" type="button" (click)="editAddress(address)">{{
+                        address.isEditing
+                        ?
+                        'Save' : 'Edit'
+                        }}</button>
+                    <button class="select-btn" mat-button color="primary" type="button"
+                        (click)="selectAddress(address)">Select</button>
+
+                </div>
+            </mat-card>
+        </form>
+    </div>
+</mat-card>
+
+
+
+<!-- ----------------------------- -->

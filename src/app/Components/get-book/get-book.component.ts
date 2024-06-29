@@ -17,6 +17,7 @@ export class GetBookComponent implements OnInit, OnDestroy {
   // no use
   private routerSubscription!: Subscription; // Use the non-null assertion operator
 
+
   bookObject: any;
   bookId: any;
   isAddedToCart: boolean = false;

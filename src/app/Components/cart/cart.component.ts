@@ -1,23 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CartService } from '../../Services/cart/cart.service';
 import { Router } from '@angular/router';
+import { AddressService } from '../../Services/address/address.service';
+import { OrderService } from '../../Services/order/order.service';
+
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
+
 })
 export class CartComponent implements OnInit {
 
   cartList: any;
   bookCount: any;
   ifPlaceOrderClicked: boolean = false;
-
-  constructor(private cartService: CartService, private router: Router) {
+  selectedCart: any;
+  // cart: any;
+  selectedAddress: any;
+  addressArray: any;
+  constructor(private cartService: CartService, private router: Router,
+    private addressService: AddressService, private orderService: OrderService) {
+    // this.cart = localStorage.getItem("selectedCart");
+    // this.cart = JSON.parse(this.cart)
   }
 
   ngOnInit(): void {
     this.onGetAllUserCarts();
+    this.FetchUserAddresses();
   }
 
   ifCartList() {
@@ -30,10 +41,6 @@ export class CartComponent implements OnInit {
       this.cartList = response.data;
     })
   }
-
-  // updateCartCount() {
-  //   return this.cartList ? true : false;
-  // }
 
   increaseBookCount(cart: any) {
     if (cart.quantity < 5) {
@@ -71,7 +78,69 @@ export class CartComponent implements OnInit {
     })
   }
 
+
   onPlaceOrder(cart: any) {
+    this.selectedCart = cart;
+    this.ifPlaceOrderClicked = true;
+    console.log(this.selectedCart)
+    // localStorage.setItem("selectedCart", JSON.stringify(cart))
+    // console.log(cart)
+  }
+
+
+  //-----------------------------
+
+  step = signal(0);
+
+  setStep(index: number) {
+    this.step.set(index);
+  }
+
+  nextStep() {
+    this.step.update(i => i + 1);
+  }
+
+  prevStep() {
+    this.step.update(i => i - 1);
+  }
+
+  //--------------------------
+
+  FetchUserAddresses() {
+    this.addressService.FetchUserAddresses().subscribe((response: any) => {
+      console.log(response);
+      this.addressArray = response.data;
+    })
+  }
+
+  onAddressAdded(newAddress: any) {
+    this.selectedAddress = newAddress;
+    console.log(this.selectedAddress)
+    this.addressArray.push(newAddress);
+    this.FetchUserAddresses();
+  }
+
+  onAddressSelected(selectedAddress: any) {
+    console.log('Selected Address:', selectedAddress);
+    this.selectedAddress = selectedAddress;
+    console.log(this.selectedAddress)
+  }
+
+  onCheckout(cart: any) {
+    // this.selectedAddress = localStorage.getItem("selectedAddress");
+    console.log(this.selectedAddress)
+    if (this.selectedAddress) {
+      // this.selectedAddress = JSON.parse(this.selectedAddress);
+      let data = {
+        cartId: this.selectedCart.cartId,
+        addressId: this.selectedAddress.addressId
+      }
+      this.orderService.PlaceOrder(data).subscribe((response: any) => {
+        console.log(response)
+        // localStorage.removeItem("selectedAddress");
+        this.router.navigateByUrl('/bookstore/ordersuccess')
+      })
+    }
 
   }
 

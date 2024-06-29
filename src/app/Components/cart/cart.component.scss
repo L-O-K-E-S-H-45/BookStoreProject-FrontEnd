@@ -187,15 +187,15 @@
     width: 50%;
     height: 100%;
     // background-color: rgb(34, 185, 223);
-    position: relative;
-
+    display: flex;
+    justify-content: flex-end;
 }
 
 .placeorder-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 82px;
+    margin-top: 88px;
 }
 
 .placeorder-btn button {
@@ -209,3 +209,71 @@
     border: none;
     cursor: pointer;
 }
+
+
+//----------------------------------
+
+// .example-headers-align .mat-expansion-panel-header-description {
+//     justify-content: space-between;
+//     align-items: center;
+// }
+
+// .example-headers-align .mat-mdc-form-field+.mat-mdc-form-field {
+//     margin-left: 8px;
+// }
+
+
+.address-details-card {
+    width: 750px;
+    // margin: 40px 0px;    
+    display: flex;
+    padding-top: 12px;
+    padding-left: 35px;
+}
+
+.address-details-card h4 {
+    font-size: 15px;
+}
+
+// #mat-accordion {
+//     width: 750px;
+//     height: 20px;
+// }
+
+#mat-accordion {
+    margin-top: 40px;
+}
+
+mat-accordion {
+    width: 750px;
+
+}
+
+mat-expansion-panel-header button {
+    border: solid 1px crimson;
+    height: 27px;
+    width: 140px;
+    font-size: 11px;
+    letter-spacing: .5px;
+    color: crimson;
+}
+
+mat-expansion-panel {
+    width: 730px;
+    margin-top: 40px;
+    padding: 0px 9px;
+}
+
+.m1 {
+    margin-top: 40px;
+}
+
+#checkout-btn {
+    // position: relative;
+    // top: -100px;
+    margin-top: -10px;
+    margin-left: 540px;
+}
+
+
+//----------------------------------------
