@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../../Services/data/data.service';
+import { UserService } from '../../Services/user/user.service';
+import { UserSharedService } from '../shared/userShared/user-shared.service';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +14,31 @@ export class HomeComponent implements OnInit {
   value: string = '';
   isFocused: boolean = false;
 
+  isLoggedIn: boolean = false;
+  UserName: string = 'Profile';
+
   @ViewChild('searchInput') searchInput!: ElementRef;
 
-  // @Output() updateRefreshEvent = new EventEmitter<string>();
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private dataService: DataService, private userService: UserService, private userSharedService: UserSharedService,) { }
 
   ngOnInit(): void {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.userService.GetUserById().subscribe((response: any) => {
+        console.log(response);
+        this.UserName = response.data.fullName;
+        this.userService.changeUser(response.data);
+        this.userSharedService.changeUser(response.data);
+      })
+      this.isLoggedIn = true;
+    }
+  }
 
+  onLogout() {
+    localStorage.removeItem("token");
+    this.UserName = 'Profile';
+    this.isLoggedIn = false;
   }
 
   onFocus() {
@@ -35,22 +55,31 @@ export class HomeComponent implements OnInit {
     this.value = '';
   }
 
-  archiveNotes() {
-    this.route.navigateByUrl('/home/archives');
-  }
-
-  homePage() {
-    this.route.navigateByUrl('/home/notes')
-  }
-
   search(event: any) {
     console.log(event.target.value);
-    // this.dataService.outgoingData(event.target.value);
+    this.dataService.outgoingData(event.target.value);
   }
 
   //----------
   goToCart() {
-    this.route.navigateByUrl('/bookstore/carts');
+    if (this.isLoggedIn) {
+      this.route.navigateByUrl('/bookstore/carts');
+    }
+    else this.goToLoginSignup();
+  }
+
+  goToLoginSignup() {
+    this.route.navigateByUrl('/bookstore/login-signup');
+  }
+  goToProfile() {
+    this.route.navigateByUrl('/bookstore/user-profile');
+  }
+  goToOrders() {
+    this.route.navigateByUrl('/bookstore/orders');
+  }
+
+  goToWishlist() {
+    this.route.navigateByUrl('/bookstore/wishlists');
   }
 
 }

@@ -3,6 +3,8 @@
     <div class="books-container-section-1">
         <!-- <h1>Books <span>({{booksCount}} items)</span> </h1> -->
         <h1>Books <span *ngIf='bookList()'>({{booksList.length}} items)</span> </h1>
+        <!-- not working below line code -->
+        <!-- <h1>Books <span *ngIf='filteredBooks'>({{filteredBooks.length}} items)</span> </h1> -->
         <select name="" id="" (change)="onSortChange($event)">
             <option value="relevance">Sort by relevance</option>
             <option value="priceLowToHigh">Price: Low to High</option>
@@ -13,7 +15,8 @@
     </div>
 
     <div class="books-container-section-2">
-        <mat-card *ngFor="let books of booksList" class="book-container" (click)="goToGetBook(books)">
+        <mat-card *ngFor="let books of booksList | filter : filterBook" class="book-container"
+            (click)="goToGetBook(books)">
             <mat-card-content class="book-container-image-div">
                 <img [src]="books.image" alt="book-profile">
             </mat-card-content>
@@ -22,7 +25,8 @@
                 <p>{{books.author}}</p>
                 <div class="rating-div">
                     <h5>{{books.rating}} <img src="../../../assets/Icons/star_24dp_FILL1_wght100_GRAD0_opsz24.svg"
-                            alt=""></h5>
+                            alt="">
+                    </h5>
                     <p>({{books.ratingCount}})</p>
                 </div>
                 <div class="price-div">
@@ -30,7 +34,6 @@
                     <p><del>Rs.{{books.originalPrice}}</del></p>
                 </div>
             </mat-card-content>
-            <!-- <app-display-book [bookObj]="books"></app-display-book> -->
         </mat-card>
     </div>
 

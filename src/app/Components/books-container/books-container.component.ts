@@ -19,6 +19,7 @@ export class BooksContainerComponent implements OnInit {
     this.booksService.GetAllBooks().subscribe((response: any) => {
       console.log(response);
       this.booksArray = response.data;
+      this.booksArray = this.booksArray.filter((book: any) => book.isDeleted == false);
     })
   }
 

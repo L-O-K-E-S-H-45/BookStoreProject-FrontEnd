@@ -121,7 +121,7 @@ export class CartComponent implements OnInit {
   }
 
   onAddressSelected(selectedAddress: any) {
-    console.log('Selected Address:', selectedAddress);
+    // console.log('Selected Address:', selectedAddress);
     this.selectedAddress = selectedAddress;
     console.log(this.selectedAddress)
   }

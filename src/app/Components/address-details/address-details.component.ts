@@ -27,7 +27,7 @@ export class AddressDetailsComponent implements OnInit {
   constructor(private addressService: AddressService) { }
 
   ngOnInit(): void {
-    this.addressExist = (this.addressList && this.addressList.length > 0) ? true : false;
+    this.addressExist = (this.addressList && this.addressList.length > 0 && this.addressList.length < 3) ? true : false;
     if (this.addressExist) {
       this.addressList.forEach((address: any) => address.isEditing = false);
     }

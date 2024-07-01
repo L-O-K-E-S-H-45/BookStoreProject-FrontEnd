@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../Services/book/book.service';
+import { DataService } from '../../Services/data/data.service';
 
 @Component({
   selector: 'app-get-all-books',
@@ -12,10 +13,37 @@ export class GetAllBooksComponent implements OnInit {
   booksCount: number = 0;
   getBook: any;
   @Input() booksList: any[] = [];
-  constructor(private router: Router, private bookService: BookService) { }
+  filterBook: string = '';
+
+  filteredBooks: any[] = [];
+
+  constructor(private router: Router, private bookService: BookService, private dataService: DataService) { }
   ngOnInit(): void {
     // 2nd way to update books count
     // this.updateBooksCount();
+
+    this.dataService.incomingData.subscribe((response: any) => {
+      console.log('Searching in proces: ', response);
+      this.filterBook = response;
+
+      // not working
+      // this.applyFilter();
+    })
+  }
+
+  // getting error at : this.filteredBooks = this.booksList.filter((book: any) => ; saying cannot read undefined filter
+  applyFilter() {
+    console.log('in apply-filer: ', this.filterBook)
+    console.log(this.filterBook)
+    if (this.filterBook === '') {
+      this.filteredBooks = this.booksList;
+    } else {
+      this.filteredBooks = this.booksList.filter((book: any) =>
+        book.title.toLowerCase().includes(this.filterBook.toLowerCase()) ||
+        book.author.toLowerCase().includes(this.filterBook.toLowerCase())
+      );
+      console.log('in apply-filer: ', this.filterBook)
+    }
   }
 
   // 1st way to update books count

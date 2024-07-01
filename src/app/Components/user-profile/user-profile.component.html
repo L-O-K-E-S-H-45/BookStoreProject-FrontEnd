@@ -1,0 +1,113 @@
+<mat-card class="profile-outer-container">
+    <div class="header">
+        <a href="/bookstore/home">Home /</a>
+        <h5>Profile</h5>
+    </div>
+    <div *ngIf="user" class="user-details-card">
+        <div class="personal-details-div">
+            <div class="personal-details-div-s1">
+                <h1>Personal Details</h1>
+                <button mat-button (click)="isUserEditing = !isUserEditing">{{isUserEditing ? 'Cancel' :
+                    'Edit'}}</button>
+            </div>
+            <button *ngIf="isUserEditing" (click)="onUpdateUser(user)" mat-flat-button color="primary">Save</button>
+        </div>
+        <form action="" class="user-form">
+            <div><label>Full Name</label>
+                <input type="text" [(ngModel)]="user.fullName" [readonly]="!isUserEditing"
+                    name="fullName-{{user.userId}}" [ngClass]="{'readonly': !isUserEditing, 'editable': isUserEditing}">
+            </div>
+            <div><label>Email Id</label>
+                <input type="email" [(ngModel)]="user.email" [readonly]="!isUserEditing" name="email-{{user.userId}}"
+                    [ngClass]="{'readonly': !isUserEditing, 'editable': isUserEditing}">
+            </div>
+            <div><label>Password</label>
+                <input type="password" [(ngModel)]="user.password" [readonly]="!isUserEditing" name="user.password"
+                    [ngClass]="{'readonly': !isUserEditing, 'editable': isUserEditing}">
+            </div>
+            <div><label>Mobile Number</label>
+                <input type="tel" [(ngModel)]="user.mobile" [readonly]="!isUserEditing" name="user.mobile"
+                    [ngClass]="{'readonly': !isUserEditing, 'editable': isUserEditing}">
+            </div>
+        </form>
+
+        <br><br>
+
+        <div class="address-details-header">
+            <h1>Address Details</h1>
+            <button *ngIf="!isNewAddress" (click)="newForm()" class="addNewAddress-btn">Add New Address</button>
+        </div>
+
+        <form *ngIf="isNewAddress" (ngSubmit)="onSaveAddress(newAddress)" class="address-form">
+            <div class="addres-div" id="divs">
+                <label>Address</label><textarea [(ngModel)]="newAddress.address" name="address"></textarea>
+            </div>
+            <div class="new-address-city-state-div" id="divs">
+                <div><label>City/Town</label><input type="text" [(ngModel)]="newAddress.city" name="city"></div>
+                <div><label>State</label><input type="text" [(ngModel)]="newAddress.state" name="state"></div>
+            </div>
+            <div class="type-div" id="divs">
+                <label>Type</label>
+                <mat-radio-group [(ngModel)]="newAddress.type" name="type">
+                    <mat-radio-button value="Home">Home</mat-radio-button>
+                    <mat-radio-button value="Work">Work</mat-radio-button>
+                    <mat-radio-button value="Other">Other</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="address-form-action-btns"><button mat-button color="primary" class="cancel-btn"
+                    (click)="onCancel()">Cancel</button>
+                <button mat-flat-button type="submit" color="primary" class="save-btn">Save</button>
+            </div>
+        </form>
+
+
+        <div *ngIf="!isNewAddress">
+            <form *ngFor="let address of addressList, let i = index" class="address-form">
+                <mat-card class="address-mat-card">
+                    <div class="address-details-card">
+                        <div class="address-details-card-s1">
+                            <h1>{{i+1}}.{{address.type}}</h1>
+                            <button mat-button
+                                (click)="address.isAddressEditing = !address.isAddressEditing">{{address.isAddressEditing
+                                ?
+                                'Cancel' :
+                                'Edit'}}</button>
+                            <button *ngIf="!address.isAddressEditing" type="button" mat-button
+                                (click)="onDeleteAddress(address)">Delete</button>
+                        </div>
+                        <button *ngIf="address.isAddressEditing" type="button" (click)="onUpdateAddress(address)"
+                            mat-flat-button color="primary">Save</button>
+                    </div>
+
+                    <div class="addres-div" id="divs">
+                        <label>Address</label><textarea [(ngModel)]="address.address"
+                            [readonly]="!address.isAddressEditing" name="address-{{address.addressId}}"
+                            [ngClass]="{'readonly': !address.isAddressEditing, 'editable': address.isAddressEditing}"></textarea>
+                    </div>
+                    <div class="city-state-div" id="divs">
+                        <div><label>City/Town</label><input type="text" [(ngModel)]="address.city"
+                                [readonly]="!address.isAddressEditing" name="city-{{address.addressId}}"
+                                [ngClass]="{'readonly': !address.isAddressEditing, 'editable': address.isAddressEditing}">
+                        </div>
+                        <div><label>State</label><input type="text" [(ngModel)]="address.state"
+                                [readonly]="!address.isAddressEditing" name="state-{{address.addressId}}"
+                                [ngClass]="{'readonly': !address.isAddressEditing, 'editable': address.isAddressEditing}">
+                        </div>
+                    </div>
+                    <div class="type-div" id="divs">
+                        <label>Type</label>
+                        <mat-radio-group [(ngModel)]="address.type" [disabled]="!address.isAddressEditing"
+                            name="type-{{address.addressId}}">
+                            <mat-radio-button value="Home">Home</mat-radio-button>
+                            <mat-radio-button value="Work">Work</mat-radio-button>
+                            <mat-radio-button value="Other">Other</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                </mat-card>
+            </form>
+        </div>
+
+    </div>
+    <br><br><br>
+</mat-card>

@@ -21,4 +21,24 @@ export class WishlistService {
     return this.httpService.postResetService('https://localhost:44321/api/Wishlist/addBookToWishlist', reqData, true, header);
   }
 
+  GetAllUserWishlists() {
+    let header = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    }
+    return this.httpService.getService('https://localhost:44321/api/Wishlist/wishlistByUser', true, header);
+  }
+
+  DeleteWishlist(reqData: any) {
+    let header = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    }
+    return this.httpService.deleteService('https://localhost:44321/api/Wishlist/delete?wishlistId=' + reqData.wishlistId, true, header);
+  }
+
 }

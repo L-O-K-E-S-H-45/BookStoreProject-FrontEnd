@@ -35,19 +35,19 @@
             <mat-card class="address-mat-card">
                 <div class="name-mobile-div" id="divs">
                     <div><label>Full Name</label><input type="text" [(ngModel)]="address.fullName"
-                            [readonly]="!address.isEditing" name="fullName-{{address.id}}"></div>
+                            [readonly]="!address.isEditing" name="fullName-{{address.addressId}}"></div>
                     <div><label>Mobile</label><input type="tel" [(ngModel)]="address.mobile"
-                            [readonly]="!address.isEditing" name="mobile-{{address.id}}"></div>
+                            [readonly]="!address.isEditing" name="mobile-{{address.addressId}}"></div>
                 </div>
                 <div class="addres-div" id="divs">
-                    <label>Address</label><input type="text" [(ngModel)]="address.address"
-                        [readonly]="!address.isEditing" name="address-{{address.id}}">
+                    <label>Address</label><textarea [(ngModel)]="address.address" [readonly]="!address.isEditing"
+                        name="address-{{address.addressId}}"></textarea>
                 </div>
                 <div class="city-state-div" id="divs">
                     <div><label>City/Town</label><input type="text" [(ngModel)]="address.city"
-                            [readonly]="!address.isEditing" name="city-{{address.id}}"></div>
+                            [readonly]="!address.isEditing" name="city-{{address.addressId}}"></div>
                     <div><label>State</label><input type="text" [(ngModel)]="address.state"
-                            [readonly]="!address.isEditing" name="state-{{address.id}}"></div>
+                            [readonly]="!address.isEditing" name="state-{{address.addressId}}"></div>
                 </div>
                 <div class="type-div" id="divs">
                     <label>Type</label>

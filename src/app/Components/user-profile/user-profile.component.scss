@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile-outer-container {
+    width: 800px;
+    height: fit-content;
+    margin: auto;
+    padding: 20px;
+}
+
+
+.header {
+    display: flex;
+}
+
+.header a {
+    text-decoration: none;
+    color: gray;
+    font-size: 15px;
+    margin-right: 2px;
+}
+
+.header h5 {
+    font-size: 14px;
+    color: black;
+    font-weight: 500px;
+}
+
+
+//----------------
+
+.header h1 {
+    font-size: 18px;
+}
+
+label {
+    font-size: 14px;
+    letter-spacing: .5px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+
+mat-radio-button {
+    font-size: 10px !important;
+    height: 10px !important;
+    width: 10px !important;
+}
+
+#divs {
+    width: 500px;
+    // background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+}
+
+#divs div {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.addres-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.type-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input {
+    height: 40px;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    letter-spacing: .5px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+textarea {
+    height: 80px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: solid 1px lightgray;
+    outline: none;
+    padding: 10px;
+}
+
+mat-radio-group {
+    margin-left: -10px;
+}
+
+mat-radio-button {
+    margin-right: 50px;
+}
+
+.address-mat-card {
+    padding: 10px 10px;
+    margin-bottom: 20px;
+}
+
+////---------------
+
+.user-details-card {
+    padding: 10px 20px;
+    width: 74%;
+    // background-color: aliceblue;
+    margin-left: 30px;
+}
+
+.personal-details-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.personal-details-div-s1 {
+    display: flex;
+    align-items: center;
+    // background-color: aqua;
+    height: 40px;
+}
+
+
+.personal-details-div-s1 h1 {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin-top: 13px;
+    margin-right: 6px;
+}
+
+.personal-details-div-s1 button {
+    font-size: 13px;
+    color: red;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-form label {
+    font-size: 12px;
+}
+
+//----
+.address-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.address-details-header button {
+    border: solid 1px crimson;
+    height: 27px;
+    width: 140px;
+    font-size: 11px;
+    letter-spacing: .5px;
+    color: crimson;
+    background-color: white;
+    cursor: pointer;
+}
+
+.new-address-city-state-div input {
+    border: solid 1px lightgray;
+}
+
+.address-details-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.address-details-card-s1 {
+    display: flex;
+    align-items: center;
+}
+
+.address-details-card-s1 h1 {
+    font-size: 20px;
+    margin-top: 13px;
+    margin-right: 8px;
+}
+
+.address-details-card-s1 button {
+    font-size: 13px;
+    color: red;
+}
+
+.address-form-action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+
+.save-btn {
+    height: 30px;
+    width: 130px;
+    background-color: #3371B5;
+    color: white !important;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    height: 30px;
+    width: 100px;
+    background-color: #f10928;
+    color: white !important;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+//----- for [ngClass]
+.readonly {
+    background-color: rgb(236, 236, 236);
+    border: solid 1px lightgray;
+}
+
+.editable {
+    background-color: white;
+    border: solid 1px lightgray;
+}

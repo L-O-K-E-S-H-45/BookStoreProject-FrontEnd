@@ -23,6 +23,7 @@ export class AddressService {
   }
 
   AddAddress(reqData: any) {
+    // console.log(reqData)
     let header = {
       headers: new HttpHeaders({
         'content-type': 'application/json',
@@ -40,6 +41,16 @@ export class AddressService {
       })
     }
     return this.httpService.putService('https://localhost:44321/api/Address/update?addressId=' + reqData.addressId, reqData, true, header);
+  }
+
+  DeleteAddress(reqData: any) {
+    let header = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    }
+    return this.httpService.deleteService('https://localhost:44321/api/Address/delete?addressId=' + reqData.addressId, true, header);
   }
 
 }

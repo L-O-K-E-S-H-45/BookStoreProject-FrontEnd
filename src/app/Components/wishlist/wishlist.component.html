@@ -1,1 +1,38 @@
-<p>wishlist works!</p>
+<div class="Maincart-container">
+    <div class="header">
+        <a href="/bookstore/home">Home /</a>
+        <h5>My Wishlists</h5>
+    </div>
+
+    <mat-card class="carts-container">
+        <div class="carts-container-header-div">
+            <h2>My Wishlist <span *ngIf="wishList">({{wishList.length}})</span> </h2>
+        </div>
+        <mat-card *ngFor="let wishlist of wishList" class="cart">
+            <mat-card-content class="cart-content">
+                <div class="cart-content-left">
+                    <div class="cart-content-left-content-div">
+                        <img [src]="wishlist.image" alt="cart-image">
+                        <div class="cart-content-left-content-div-description">
+                            <h1>{{wishlist.title}}</h1>
+                            <p>{{wishlist.author}}</p>
+                            <div class="cart-price">
+                                <h1>Rs.{{wishlist.finalBookPrice}}</h1>
+                                <p><del>Rs.{{wishlist.originalBookPrice}}</del></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-content-right">
+                    <button mat-icon-button (click)="onDeleteWishlist(wishlist)"><img
+                            src="../../../assets/Icons/delete_forever_24dp_FILL0_wght400_GRAD0_opsz24.svg"
+                            alt="delete-forever"></button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-card>
+
+    <br><br><br>
+
+</div>

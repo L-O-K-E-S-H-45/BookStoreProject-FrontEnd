@@ -39,6 +39,11 @@ import { OrderSuccessComponent } from './Components/order-success/order-success.
 import { MatRadioModule, MatRadioButton } from '@angular/material/radio';
 import { OrdersComponent } from './Components/orders/orders.component';
 
+import { FilterPipe } from './pipes/filter.pipe';
+import { AuthguardService } from './Components/shared/authguard.service';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +59,8 @@ import { OrdersComponent } from './Components/orders/orders.component';
     AddressDetailsComponent,
     OrderSuccessComponent,
     OrdersComponent,
+    FilterPipe,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -82,10 +89,14 @@ import { OrdersComponent } from './Components/orders/orders.component';
     MatRadioModule,
     MatRadioButton,
 
+
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+
+    AuthguardService
+
   ],
   bootstrap: [AppComponent]
 })
