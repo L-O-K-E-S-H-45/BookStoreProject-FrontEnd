@@ -28,7 +28,15 @@ export class OrdersComponent implements OnInit {
   onGetAllOrders() {
     this.orderService.FetchUserOrders().subscribe((response: any) => {
       console.log(response);
+      if (response.data.length > 0) {
+        localStorage.setItem("userId", response.data[0].userId);
+      }
       this.ordersList = response.data;
+      this.orderService.outgoingBookList(response.data);
+      this.orderService.setOrdersList(response.data);
+      this.orderService.inComingBooksList.subscribe((res: any) => {
+        console.log(res)
+      })
     })
   }
 
@@ -40,3 +48,6 @@ export class OrdersComponent implements OnInit {
   }
 
 }
+
+
+

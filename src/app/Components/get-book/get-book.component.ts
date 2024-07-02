@@ -6,6 +6,8 @@ import { filter } from 'rxjs/operators'
 import { CartService } from '../../Services/cart/cart.service';
 import { error } from 'console';
 import { WishlistService } from '../../Services/wishlist/wishlist.service';
+import { FeedbackService } from '../../Services/feedback/feedback.service';
+import { OrderService } from '../../Services/order/order.service';
 
 @Component({
   selector: 'app-get-book',
@@ -22,11 +24,17 @@ export class GetBookComponent implements OnInit, OnDestroy {
   bookId: any;
   isAddedToCart: boolean = false;
   isAddedToWishlist: boolean = false;
+
+  feedbackArray: any;
+  hasPurchased: boolean = false;
+
   constructor(private bookService: BookService, private activatedRoute: ActivatedRoute,
-    private router: Router, private cartService: CartService, private wishlistService: WishlistService) {
+    private router: Router, private cartService: CartService, private wishlistService: WishlistService,
+    private feedbackService: FeedbackService, private orderService: OrderService) {
     // 3rd way
     this.bookId = this.activatedRoute.snapshot.params['bookId'];
   }
+
   ngOnInit(): void {
     // 1st way-> getting bookId from local-storage
     this.onGetBookById();
@@ -75,6 +83,12 @@ export class GetBookComponent implements OnInit, OnDestroy {
     //     this.bookService.clearBookFromLocalStorage();
     //   }
     // });
+
+    // this.orderService.getOrdersList().subscribe((orders: any) => {
+    //   console.log(orders)
+    // });
+
+    this.getAllFeedbacksByBook();
 
   }
 
@@ -158,5 +172,24 @@ export class GetBookComponent implements OnInit, OnDestroy {
   goToWishlist() {
     this.router.navigateByUrl('/bookstore/wishlists');
   }
+
+  getAllFeedbacksByBook() {
+    if (!this.bookId) {
+      console.error('BookId is not found');
+    }
+    else {
+      this.feedbackService.GetBookFeedbacks(this.bookId).subscribe((response: any) => {
+        console.log(response)
+        this.feedbackArray = response.data;
+      });
+    }
+  }
+
+  onFeedbackAdded(newFeedback: any) {
+    console.log('New feedback added:', newFeedback);
+    this.getAllFeedbacksByBook();
+  }
+
+
 
 }

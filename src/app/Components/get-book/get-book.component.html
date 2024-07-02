@@ -1,6 +1,6 @@
 <mat-card *ngIf="bookObject" class="getbook-container">
     <mat-card-content class="getbook-container-start">
-        <span>Home /<p>Book({{bookObject.bookId}})</p></span>
+        <span> <a href="/bookstore/home">Home </a>/<p>Book({{bookObject.bookId}})</p></span>
 
         <div class="getbook-maincontent">
             <div class="getbook-left-section">
@@ -48,7 +48,8 @@
                 </div>
                 <hr>
                 <div class="getbook-right-section-feedback">
-                    <h4>Customer Feedback</h4>
+                    <app-feedback [feedbackList]="feedbackArray" [bookId]="bookId"
+                        (feedbackAdded)="onFeedbackAdded($event)"></app-feedback>
                 </div>
             </div>
         </div>

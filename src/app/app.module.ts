@@ -42,7 +42,9 @@ import { OrdersComponent } from './Components/orders/orders.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { AuthguardService } from './Components/shared/authguard.service';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { FeedbackComponent } from './Components/feedback/feedback.component';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
     OrderSuccessComponent,
     OrdersComponent,
     FilterPipe,
-    UserProfileComponent
+    UserProfileComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
     MatRadioModule,
     MatRadioButton,
 
+    MatSnackBarModule,
 
   ],
   providers: [

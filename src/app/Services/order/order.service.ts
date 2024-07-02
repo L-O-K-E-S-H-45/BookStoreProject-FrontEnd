@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,13 @@ export class OrderService {
   token: any;
   constructor(private httpService: HttpService) {
     this.token = localStorage.getItem("token");
+  }
+
+  public orderSource = new BehaviorSubject<any>({});
+  inComingBooksList = this.orderSource.asObservable();
+
+  outgoingBookList(books: any) {
+    this.orderSource.next(books);
   }
 
   PlaceOrder(reqData: any) {
@@ -42,4 +50,14 @@ export class OrderService {
     return this.httpService.deleteService('https://localhost:44321/api/Order/cancelorder/' + reqData.orderId, true, header);
   }
 
+  getOrdersList() {
+    return this.orderSource.asObservable();
+  }
+
+  setOrdersList(orders: any) {
+    this.orderSource.next(orders);
+  }
+
 }
+
+

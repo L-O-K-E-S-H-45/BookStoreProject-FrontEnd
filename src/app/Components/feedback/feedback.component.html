@@ -1,0 +1,56 @@
+<div class="feedback-outer-container">
+    <h1>Customer Feedback</h1>
+    <mat-card>
+        <h5>Overall Rating</h5>
+        <div class="star-rating" id="input-stars">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <mat-icon (click)="setRating(i + 1)"
+                    [ngClass]="{'selected': i < rating, 'readonly': !hasPurchased}">star</mat-icon>
+            </ng-container>
+        </div>
+        <textarea [(ngModel)]="feedbackText" placeholder="Write your feedback here"
+            [readonly]="!hasPurchased"></textarea>
+        <button mat-flat-button color="primary" (click)="submitFeedback()" [disabled]="!hasPurchased">Submit</button>
+    </mat-card>
+
+    <!-- <div *ngIf="userFeedback" class="user-feedback">
+        <h3>Your Feedback</h3>
+        <div class="star-rating">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <mat-icon [ngClass]="{'selected': i < userFeedback.rating}">star</mat-icon>
+            </ng-container>
+        </div>
+        <p>{{ userFeedback.review }}</p>
+        <button mat-button (click)="editFeedback()">Edit</button>
+        <button mat-button color="warn" (click)="deleteFeedback()">Delete</button>
+    </div> -->
+
+    <div *ngIf="feedbackList && feedbackList.length > 0" class="feedbacks-list-container">
+        <div *ngFor="let feedback of feedbackList">
+            <div class="username-div">
+                <button mat-icon-button>{{ feedback.userName.charAt(0) }}</button>
+                <h3>{{ feedback.userName }}</h3>
+            </div>
+            <div class="star-rating">
+                <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                    <mat-icon [ngClass]="{'selected': i < feedback.rating}">star</mat-icon>
+                </ng-container>
+            </div>
+            <p>{{ feedback.review }}</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- //--kkkkkkkkk---------- -->
+<!-- <div class="customer-feedbacks" *ngIf="feedbackList && feedbackList.length > 0">
+    <div *ngFor="let feedback of feedbackList">
+        <span class="name">{{ feedback.userName }}</span>
+        <div class="rating-stars">
+            <span *ngFor="let star of [1, 2, 3, 4, 5]" [ngClass]="{'filled': star <= feedback.rating}">&#9733;</span>
+        </div>
+        <p class="comment">{{ feedback.review }}</p>
+    </div> -->
+<!-- ------- kkkkkkkkkkkk------------------- -->
+
+<br><br><br>
